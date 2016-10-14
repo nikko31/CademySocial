@@ -1,0 +1,103 @@
+@import url(https://fonts.googleapis.com/css?family=Audiowide);
+
+@font-face {
+    font-family: angel;
+    src: url(Angel.TTF);
+    font-weight: bold;
+}
+
+body {
+    padding-top: 70px;
+}
+
+.navbar {
+    background-color: #161616;
+}
+
+.navbar-default {
+    border-color: #8f070d;
+}
+
+header .navbar-default .navbar-brand {
+    color: #8f070d;
+    font-family: angel, monospace;
+    font-size: 2em;
+}
+
+.container {
+    width: 95%;
+    margin-left: 1%;
+}
+
+.page-header {
+    margin: 0;
+    border-bottom-color: #8f070d;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-weight: 100;
+    font-size: 2em;
+}
+
+.no-data {
+    text-align: center;
+    padding: 1em 0;
+}
+
+#notifications {
+    font-size: 1.5em;
+    padding: 13px;
+    color: #7a060b;
+}
+
+
+#notifications.new-notifications {
+    color: #bc080e;
+}
+
+.popover {
+    max-width: 350px;
+    width: 350px;
+}
+
+.popover ul {
+    padding: 0;
+    margin: 0;
+}
+
+.popover ul li {
+    list-style: none;
+    border-bottom: 1px solid #eeeeee;
+    padding: .4em 0;
+}
+
+.popover ul li:last-child {
+    border-bottom: none;
+}
+
+.popover ul li .user-picture {
+    width: 45px;
+    float: left;
+}
+
+.popover ul li p {
+    font-size: .9em;
+    padding: 0 0 0 .6em;
+    margin-left: 45px;
+    margin-bottom: 0;
+}
+
+.markdown {
+    margin-bottom: .8em;
+}
+
+.btn-primary{
+    background-color: #8f070d;
+    font-family: "Audiowide", cursive;
+    font-weight: bold;
+}
+.btn-primary:hover:focus{
+    background-color: #7a060b;
+}
+

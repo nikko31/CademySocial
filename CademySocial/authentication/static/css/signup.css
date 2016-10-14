@@ -1,0 +1,54 @@
+body {
+  background-color: #003546;
+}
+
+@font-face {
+    font-family: venus;
+    src: url(venus.ttf);
+    font-weight: bold;
+}
+
+.logo {
+  margin: 0;
+  margin-top: 1%;
+  font-size: 5em;
+  font-weight: 200;
+  font-family: angel,monospace;
+  text-align: center;
+  text-shadow: 1px 1px 0 #333333;
+  line-height: 70px;
+}
+
+.logo a {
+  color: #8f070d;
+}
+
+.logo a:hover, .logo a:focus {
+  color: #8f070d;
+  text-decoration: none;
+  text-shadow: 2px 2px 0 #4a4a4a;
+}
+
+.signup {
+  background-color: #005671;
+  width: 70%;
+  border-radius: 7px;
+  margin: 10px auto 0;
+  color: #f8f5ff;
+}
+.signup h2{
+  font-family: venus, cursive;
+
+}
+
+.signup {
+  padding: 30px 20px;
+}
+
+.signup form {
+  margin-top: 20px;
+}
+
+.signup h2 {
+  margin: 0;
+}

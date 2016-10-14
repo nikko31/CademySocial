@@ -1,0 +1,49 @@
+body {
+  background-color: #003546;
+}
+
+@font-face {
+    font-family: venus;
+    src: url(venus.ttf);
+    font-weight: bold;
+}
+.cover {
+  width: 400px;
+  height: 400px;
+  position: fixed;
+  margin-left: -200px;
+  margin-top: -200px;
+  top: 50%;
+  left: 50%;
+}
+
+.logo {
+  font-family: angel, monospace;
+  margin: 0;
+  margin-bottom: 10%;
+  font-size: 6em;
+  font-weight: 200;
+  color: #8f070d;
+  text-align: center;
+  text-shadow: 1px 1px 0 #333333;
+  line-height: 70px;
+}
+
+.login {
+  background-color: #004860;
+  width: 100%;
+  height: 330px;
+  border-radius: 7px;
+  font-family: "Audiowide", cursive;
+  color: #ffffff;
+}
+.login h2{
+  font-family: "venus", cursive;
+}
+.login {
+  padding: 10px 20px;
+}
+
+.login form {
+  margin-top: 20px;
+}
