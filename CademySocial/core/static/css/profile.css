@@ -1,6 +1,27 @@
-.col-md-9 h4{
+.col-md-9 h4 {
     color: #7a060b;
     font-family: "Audiowide", cursive;
     font-size: 25px;
     font-weight: 400;
+}
+
+img.picture {
+    -moz-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+}
+
+.image-cropper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+
 }
