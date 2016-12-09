@@ -1,7 +1,16 @@
-body {
-    background-color: #003546;
+textarea.form-control{
+    resize: none;
 }
-
+.githubPre{
+    max-height: 200px;
+    background-color:transparent;
+}
+.githubText{
+    max-width: 100%;
+    color: yellowgreen;
+    font-family: droid, monospace;
+    font-weight: bold;
+}
 ul.stream {
     margin: 0;
     padding: 0;
@@ -169,6 +178,15 @@ ul.stream li div.post div.interaction a {
     border-color: transparent;
 }
 
+h2.panel-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: white;
+    font-family: "Audiowide", cursive;
+    font-weight: 300;
+}
+
 .panel-title {
     margin-top: 0;
     margin-bottom: 0;
@@ -177,6 +195,7 @@ ul.stream li div.post div.interaction a {
     font-family: "Audiowide", cursive;
     font-weight: 300;
 }
+
 
 .panel-default > .panel-heading {
     background-color: #8f070d;

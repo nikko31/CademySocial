@@ -6,8 +6,24 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: droid;
+    src: url(DroidSansMono.ttf);
+    font-weight: bold;
+}
+
 body {
     padding-top: 70px;
+    background-color: #003546;
+}
+
+.dropdown-menu {
+     background-color: #7a060b;
+     border-color: transparent;
+}
+
+.dropdown-menu li a {
+    color:white;
 }
 
 .navbar {
@@ -51,7 +67,6 @@ header .navbar-default .navbar-brand {
     color: #7a060b;
 }
 
-
 #notifications.new-notifications {
     color: #bc080e;
 }
@@ -92,12 +107,13 @@ header .navbar-default .navbar-brand {
     margin-bottom: .8em;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: #8f070d;
     font-family: "Audiowide", cursive;
     font-weight: bold;
 }
-.btn-primary:hover:focus{
+
+.btn-primary:hover:focus {
     background-color: #7a060b;
 }
 

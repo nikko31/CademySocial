@@ -17,17 +17,21 @@ from django.conf.urls import url, include
 
 from django.contrib.auth import views as auth_views
 from CademySocial.core import views as core_views
-from CademySocial.authentication import views as bootcamp_auth_views
+from CademySocial.authentication import views as cademy_auth_views
 
 urlpatterns = [
     url(r'^$', core_views.home, name='home'),
     url(r'^feeds/', include('CademySocial.feeds.urls')),
+    # articles
+    url(r'^articles/', include('CademySocial.articles.urls')),
     # login
     url(r'^login', auth_views.login, {'template_name': 'core/cover.html'}, name='login'),
     url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),
     # signup
-    url(r'^signup/$', bootcamp_auth_views.signup, name='signup'),
+    url(r'^signup/$', cademy_auth_views.signup, name='signup'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     url(r'^feeds/', include('CademySocial.feeds.urls')),
+    url(r'^settings/$', core_views.settings, name='settings'),
+
 ]
