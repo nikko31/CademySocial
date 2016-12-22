@@ -8,13 +8,13 @@ class ArticleForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=255)
     content = forms.CharField(
-        widget=forms.Textarea(attrs={'class': 'form-control'}),
-        max_length=4000)
+        widget=forms.Textarea(attrs={'class': 'form-control'}))
     tags = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=255, required=False,
         help_text='Use spaces to separate the tags, such as "Python jsf SpectralClustering"')
+    videos = forms.URLField(help_text='Add videos')
 
     class Meta:
         model = Article
-        fields = ['title', 'content', 'tags', 'status']
+        fields = ['title', 'content', 'videos', 'tags', 'status']
