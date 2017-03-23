@@ -269,6 +269,7 @@ $(function () {
   };
   track_comments();
 
+
   $("ul.stream").on("click", ".remove-feed", function () {
     var li = $(this).closest("li");
     var feed = $(li).attr("feed-id");

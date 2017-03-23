@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseBadRequest, \
     HttpResponseForbidden
 
+from CademySocial.activities.models import Activity
 from CademySocial.decorators import ajax_required
 from CademySocial.feeds.models import Feed
 
@@ -34,6 +35,7 @@ def feed(request, pk):
 
 
 @login_required
+@ajax_required
 def load(request):
     from_feed = request.GET.get('from_feed')
     page = request.GET.get('page')
@@ -48,16 +50,16 @@ def load(request):
         return HttpResponseBadRequest()
     except EmptyPage:
         feeds = []
-    html = u''
+    html = ''
     csrf_token = (csrf(request)['csrf_token'])
     for feed in feeds:
-        html = u'{0}{1}'.format(html,
-                                render_to_string('feeds/partial_feed.html',
-                                                 {
-                                                     'feed': feed,
-                                                     'user': request.user,
-                                                     'csrf_token': csrf_token
-                                                 }))
+        html = '{0}{1}'.format(html,
+                               render_to_string('feeds/partial_feed.html',
+                                                {
+                                                    'feed': feed,
+                                                    'user': request.user,
+                                                    'csrf_token': csrf_token
+                                                }))
 
     return HttpResponse(html)
 
@@ -66,15 +68,15 @@ def _html_feeds(last_feed, user, csrf_token, feed_source='all'):
     feeds = Feed.get_feeds_after(last_feed)
     if feed_source != 'all':
         feeds = feeds.filter(user__id=feed_source)
-    html = u''
+    html = ''
     for feed in feeds:
-        html = u'{0}{1}'.format(html,
-                                render_to_string('feeds/partial_feed.html',
-                                                 {
-                                                     'feed': feed,
-                                                     'user': user,
-                                                     'csrf_token': csrf_token
-                                                 }))
+        html = '{0}{1}'.format(html,
+                               render_to_string('feeds/partial_feed.html',
+                                                {
+                                                    'feed': feed,
+                                                    'user': user,
+                                                    'csrf_token': csrf_token
+                                                }))
 
     return html
 
@@ -84,7 +86,7 @@ def _html_feeds(last_feed, user, csrf_token, feed_source='all'):
 def load_new(request):
     last_feed = request.GET.get('last_feed')
     user = request.user
-    csrf_token = csrf(request)['csrf_token']
+    csrf_token = (csrf(request)['csrf_token'])
     html = _html_feeds(last_feed, user, csrf_token)
     return HttpResponse(html)
 
@@ -106,7 +108,7 @@ def check(request):
 def post(request):
     last_feed = request.POST.get('last_feed')
     user = request.user
-    csrf_token = csrf(request)['csrf_token']
+    csrf_token = (csrf(request)['csrf_token'])
     feed = Feed()
     feed.user = user
     post = request.POST['post']
@@ -116,6 +118,26 @@ def post(request):
         feed.save()
     html = _html_feeds(last_feed, user, csrf_token)
     return HttpResponse(html)
+
+
+@login_required
+@ajax_required
+def like(request):
+    feed_id = request.POST['feed']
+    feed = Feed.objects.get(pk=feed_id)
+    user = request.user
+    like = Activity.objects.filter(activity_type=Activity.LIKE, feed=feed_id,
+                                   user=user)
+    if like:
+        user.profile.unotify_liked(feed)
+        like.delete()
+
+    else:
+        like = Activity(activity_type=Activity.LIKE, feed=feed_id, user=user)
+        like.save()
+        user.profile.notify_liked(feed)
+
+    return HttpResponse(feed.calculate_likes())
 
 
 @login_required
@@ -183,5 +205,5 @@ def remove(request):
             return HttpResponse()
         else:
             return HttpResponseForbidden()
-    except Exception as e:
+    except Exception:
         return HttpResponseBadRequest()

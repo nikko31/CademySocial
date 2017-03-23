@@ -34,6 +34,8 @@ INSTALLED_APPS = (
     'CademySocial.core',
     'CademySocial.feeds',
     'CademySocial.articles',
+    'CademySocial.activities',
+    'CademySocial.questions',
 
 )
 

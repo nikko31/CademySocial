@@ -1,7 +1,10 @@
+import bleach as bleach
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import escape
+
+from CademySocial.activities.models import Activity
 
 
 class Feed(models.Model):
@@ -9,6 +12,8 @@ class Feed(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     post = models.TextField(max_length=255)
     parent = models.ForeignKey('Feed', null=True, blank=True)
+    likes = models.IntegerField(default=0)
+    comments = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = _('Feed')
@@ -34,6 +39,18 @@ class Feed(models.Model):
     def get_comments(self):
         return Feed.objects.filter(parent=self).order_by('date')
 
+    def calculate_likes(self):
+        likes = Activity.objects.filter(activity_type=Activity.LIKE,
+                                        feed=self.pk).count()
+        self.likes = likes
+        self.save()
+        return self.likes
+
+    def get_likes(self):
+        likes = Activity.objects.filter(activity_type=Activity.LIKE,
+                                        feed=self.pk)
+        return likes
+
     def get_likers(self):
         likes = self.get_likes()
         likers = []
@@ -52,3 +69,6 @@ class Feed(models.Model):
         self.comments = Feed.objects.filter(parent=self).count()
         self.save()
         return feed_comment
+
+    def linkfy_post(self):
+        return bleach.linkify(escape(self.post))
